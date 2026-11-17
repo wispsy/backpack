@@ -40,7 +40,7 @@ class CodecTests(unittest.TestCase):
         self.codec = EnforceTypeCodec(Note, type_key="notes.note", schema_version=2)
 
     def test_published_profile_is_explicit(self):
-        self.assertTrue(importlib.metadata.version("enforce-type").startswith("0.1."))
+        self.assertTrue(importlib.metadata.version("enforce-type").startswith("0.2."))
 
     def test_compiles_once_and_uses_check_load_dump(self):
         from backpack_store import enforce_type_codec as module

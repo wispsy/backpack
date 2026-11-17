@@ -21,8 +21,8 @@ except ImportError:
 from .errors import CodecError, RegistrationError, ValidationError
 from .records import JSONObject, json_object, positive_integer, validate_type_key
 
-if not enforce_version.startswith("0.1."):
-    raise ImportError("The Backpack Store Enforce Type codec supports Enforce Type 0.1 only.")
+if not enforce_version.startswith("0.2."):
+    raise ImportError("The Backpack Store Enforce Type codec supports Enforce Type 0.2 only.")
 
 T = TypeVar("T")
 

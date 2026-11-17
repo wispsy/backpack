@@ -2,6 +2,7 @@ name: Tests
 
 on:
   pull_request:
+  workflow_call:
   push:
     branches: [main]
 
@@ -24,7 +25,7 @@ jobs:
             python-version: '3.11'
           - os: ubuntu-latest
             python-version: '3.13'
-          - os: macos-latest
+          - os: macos-15-intel
             python-version: '3.13'
           - os: windows-latest
             python-version: '3.11'
@@ -73,7 +74,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, macos-15-intel, windows-latest]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -83,7 +84,7 @@ jobs:
         run: |
           python -m pip install uv
           uv build --out-dir dist
-          python -c "import pathlib, subprocess, sys; wheel = next(pathlib.Path('dist').glob('*.whl')); subprocess.run([sys.executable, '-m', 'pip', 'install', str(wheel) + '[enforce-type]', 'enforce-type==0.1.0'], check=True)"
+          python -c "import pathlib, subprocess, sys; wheel = next(pathlib.Path('dist').glob('*.whl')); subprocess.run([sys.executable, '-m', 'pip', 'install', str(wheel) + '[enforce-type]', 'enforce-type==0.2.0'], check=True)"
       - name: Verify the optional codec and base behavior
         run: |
           python -m unittest discover -s enforce_type_tests -v
