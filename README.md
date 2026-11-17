@@ -1,6 +1,6 @@
 # Backpack Store
 
-The unreleased source checkout adds relational models alongside typed JSON records.
+Version 0.2.0 adds relational models alongside typed JSON records.
 See the [application storage guide](docs/application-storage.md) for explicit
 schema registration, checked CRUD and the optional Enforce Type profile.
 
@@ -24,7 +24,7 @@ and downstream integration pins; it is not part of the product-name alignment.
 ## Installation
 
 ```sh
-python -m pip install backpack-store==0.1.0
+python -m pip install backpack-store==0.2.0
 ```
 
 Optional extras are `backpack-store[pydantic]`, `backpack-store[moves]` and
@@ -71,12 +71,11 @@ errors. Importing the package opens no files or database and performs no network
 ## Optional Enforce Type codec
 
 ```sh
-python -m pip install '.[enforce-type]'
+python -m pip install 'backpack-store[enforce-type]==0.2.0'
 ```
 
-This adapter is available from the current source checkout; the published
-`backpack-store==0.1.0` does not include it. It requires Python 3.14+ and Enforce Type `>=0.1,<0.2`; the initial
-qualification uses published `enforce-type==0.1.0`. It compiles a trusted
+This adapter requires Python 3.14+ and Enforce Type `>=0.2,<0.3`;
+qualification uses published `enforce-type==0.2.0`. It compiles a trusted
 dataclass once, checks native values, dumps finite JSON objects and loads fresh
 models using public strict `check`/`dump`/`load` operations. Defaults and nested
 models follow that validator's published rules; unknown fields are refused.
@@ -264,7 +263,7 @@ optional provider continues to use its concrete JSON views. Run
 
 ```sh
 uv build
-python -m pip install dist/backpack_store-0.1.0-py3-none-any.whl
+python -m pip install dist/backpack_store-0.2.0-py3-none-any.whl
 python -m unittest discover -s tests -v
 ```
 
@@ -272,10 +271,10 @@ CI installs the wheel built from its source distribution and runs the behavior
 suite on Python 3.11/3.13 across Linux, macOS and Windows. The original generated
 scaffold is preserved in the repository's initial commit.
 
-This 0.1.x project is experimental. Published GitHub releases with matching `v`
+This 0.2.x project is experimental. Published GitHub releases with matching `v`
 tags run `.github/workflows/release.yaml`, verify the installed wheel and source
 distribution, and upload through PyPI trusted publishing in environment `pypi`.
-The initial release tag is `v0.1.0`.
+The current release tag is `v0.2.0`. PostgreSQL is deferred to a future version.
 
 Registered queries support [bounded literal text search](docs/text-search.md)
 over explicitly registered text fields.
